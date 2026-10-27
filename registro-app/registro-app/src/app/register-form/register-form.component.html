@@ -1,0 +1,76 @@
+<div class="container my-4" style="max-width: 600px;">
+  <h2 class="mb-4">Registro</h2>
+
+  <form (ngSubmit)="registrar()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input id="nombre" name="nombre" type="text" class="form-control" [(ngModel)]="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input id="apellidos" name="apellidos" type="text" class="form-control" [(ngModel)]="apellidos" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="nif" class="form-label">NIF</label>
+      <input id="nif" name="nif" type="text" class="form-control" maxlength="9" [(ngModel)]="nif" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" name="email" type="email" class="form-control" [(ngModel)]="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input id="telefono" name="telefono" type="tel" class="form-control" [(ngModel)]="telefono" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Sexo</label>
+      <div class="form-check form-check-inline">
+        <input id="hombre" class="form-check-input" type="radio" name="sexo" value="Hombre" [(ngModel)]="sexo">
+        <label for="hombre" class="form-check-label">Hombre</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input id="mujer" class="form-check-input" type="radio" name="sexo" value="Mujer" [(ngModel)]="sexo">
+        <label for="mujer" class="form-check-label">Mujer</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input id="otro" class="form-check-input" type="radio" name="sexo" value="Otro" [(ngModel)]="sexo">
+        <label for="otro" class="form-check-label">Otro</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="comoConocio" class="form-label">¿Cómo conociste la página?</label>
+      <select id="comoConocio" name="comoConocio" class="form-select" [(ngModel)]="comoConocio">
+        <option value="" disabled>Selecciona una opción</option>
+        @for (opcion of opcionesConocio; track opcion) {
+          <option [value]="opcion">{{ opcion }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input id="password" name="password" type="password" class="form-control" [(ngModel)]="password" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+      <input id="confirmPassword" name="confirmPassword" type="password" class="form-control" [(ngModel)]="confirmPassword" required>
+      @if (confirmPassword && password !== confirmPassword) {
+        <div class="text-danger small mt-1">Las contraseñas no coinciden</div>
+      }
+    </div>
+
+    <div class="form-check mb-3">
+      <input id="terminos" name="aceptaTerminos" type="checkbox" class="form-check-input" [(ngModel)]="aceptaTerminos">
+      <label for="terminos" class="form-check-label">Acepto los términos y condiciones</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!aceptaTerminos">Registro</button>
+  </form>
+</div>
